@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="361.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.lab5.Controller">
+   <children>
+      <TreeView fx:id="tree" layoutX="200.0" layoutY="14.0" prefHeight="174.0" prefWidth="400.0" />
+      <Button fx:id="buttonUser" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onAction="#impUser" prefHeight="106.0" prefWidth="140.0" text="ImportUser" textFill="#03971e" />
+      <Button contentDisplay="TOP" graphicTextGap="10.0" layoutX="14.0" layoutY="27.0" mnemonicParsing="false" onAction="#impBook" prefHeight="106.0" prefWidth="140.0" text="ImportBook">
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.5" focusDistance="-1.0" radius="0.8925233912245136">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="0.08498844504356384" green="0.7699999809265137" blue="0.07699999958276749" opacity="0.3199999928474426" />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </textFill></Button>
+      <Button layoutX="303.0" layoutY="200.0" mnemonicParsing="false" onAction="#start" prefHeight="106.0" prefWidth="140.0" text="Start" textFill="#461ef5" />
+   </children>
+</AnchorPane>
