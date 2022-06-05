@@ -22,7 +22,7 @@ public abstract class Human{
     }
 
     //
-
+    abstract public String getName();
     public String getFirstName() {
         return firstName;
     }
@@ -46,6 +46,7 @@ public abstract class Human{
             addBook(book);
         }
     }
+
 
     public static boolean isMale(String firstName){
         return !(firstName.endsWith("а") || firstName.endsWith("я"));

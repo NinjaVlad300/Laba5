@@ -7,6 +7,11 @@ public class Student extends Human{
     }
 
     @Override
+    public String getName(){
+        return getFirstName()+" "+getLastName();
+    }
+
+    @Override
     public String toString(){
         return "\n Студент " + getFirstName() + " " + getLastName() + " " +
                 ", \n\tкниги " + getBooks() +

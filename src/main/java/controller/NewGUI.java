@@ -1,6 +1,6 @@
 package controller;
 
-import model.entities.Library;
+import model.entities.containers.Library;
 import model.generators.Generator;
 import model.generators.books.EnglishLiteratureGenerator;
 import model.generators.humans.HumanGenerator;

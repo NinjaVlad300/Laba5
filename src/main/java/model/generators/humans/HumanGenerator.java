@@ -2,6 +2,7 @@ package model.generators.humans;
 
 import model.entities.books.Book;
 import model.entities.books.BooksNumber;
+import model.entities.containers.Record;
 import model.entities.humans.Human;
 import model.generators.Generator;
 import model.generators.books.EnglishLiteratureGenerator;
@@ -10,12 +11,23 @@ import model.generators.books.RussianLiteratureGenerator;
 import model.generators.sub.RandomIntegerGenerator;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 
 public interface HumanGenerator extends RandomIntegerGenerator, Generator{
 
     default void generate(int humansNumber){
         generateWithBooks(humansNumber, new BooksNumber(0,0,0));
+    }
+
+    default void generateWithBooks(int humansNumber, int booksNumber){
+        for(int i=1; i<=humansNumber; i++){
+            int fictionsNumber = getRandomIntegerIncludingEdge(booksNumber);
+            int russianLiteraturesNumber = getRandomIntegerIncludingEdge(booksNumber-fictionsNumber);
+            int englishLiteraturesNumber = booksNumber-(fictionsNumber+russianLiteraturesNumber);
+            generateWithBooks(new BooksNumber(fictionsNumber, russianLiteraturesNumber, englishLiteraturesNumber));
+        }
     }
 
     default void generateWithBooks(int humansNumber, BooksNumber booksNumber){
@@ -27,7 +39,11 @@ public interface HumanGenerator extends RandomIntegerGenerator, Generator{
     default void generateWithBooks(BooksNumber booksNumber){
         Human human = (Human) generate();
         addNew(human);
-        //
+        generateBooksForHuman(human, booksNumber);
+    }
+
+    default HashSet<Book> generateBooksForHuman(Human human, BooksNumber booksNumber){
+        HashSet<Book> books = new HashSet<>();
         FictionGenerator fictionGenerator = new FictionGenerator();
         RussianLiteratureGenerator russianLiteratureGenerator = new RussianLiteratureGenerator();
         EnglishLiteratureGenerator englishLiteratureGenerator = new EnglishLiteratureGenerator();
@@ -39,16 +55,14 @@ public interface HumanGenerator extends RandomIntegerGenerator, Generator{
         human.addBooks(fictionGenerator.convert());
         human.addBooks(russianLiteratureGenerator.convert());
         human.addBooks(englishLiteratureGenerator.convert());
+        //
+        books.addAll(fictionGenerator.convert());
+        books.addAll(russianLiteratureGenerator.convert());
+        books.addAll(englishLiteratureGenerator.convert());
+        return books;
     }
 
-    default void generateWithBooks(int humansNumber, int booksNumber){
-        for(int i=1; i<=humansNumber; i++){
-            int fictionsNumber = getRandomIntegerIncludingEdge(booksNumber);
-            int russianLiteraturesNumber = getRandomIntegerIncludingEdge(booksNumber-fictionsNumber);
-            int englishLiteraturesNumber = booksNumber-(fictionsNumber+russianLiteraturesNumber);
-            generateWithBooks(new BooksNumber(fictionsNumber, russianLiteraturesNumber, englishLiteraturesNumber));
-        }
-    }
+    LinkedHashSet<Record> generateRecords(Human human);
 
     @Override
     default void addNew(Object human){

@@ -1,5 +1,8 @@
 package model.entities.humans;
 
+import model.generators.humans.HumanGenerator;
+import model.generators.humans.StudentGenerator;
+
 public class Professor extends Human{
 
     private final String secondName;
@@ -13,10 +16,17 @@ public class Professor extends Human{
         return secondName;
     }
 
+
+    @Override
+    public String getName(){
+        return getFirstName()+" "+getSecondName()+" "+getLastName();
+    }
+
+
     @Override
     public String toString(){
         return "\n Преподаватель " + getFirstName() + " " + getSecondName() + " " + getLastName() + '\'' +
-                ", \n\tbooks " + getBooks() +
+                ", \n\tкниги " + getBooks() +
                   "\n\n";
     }
 
