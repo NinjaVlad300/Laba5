@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/lab5_jar</output-path>
     <root id="archive" name="lab5.jar">
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
+        <element id="file-copy" path="$PROJECT_DIR$/src/main/java/containpackage/META-INF/MANIFEST.MF" />
       </element>
       <element id="module-output" name="lab5" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.6.1/commons-math3-3.6.1.jar" path-in-jar="/" />
